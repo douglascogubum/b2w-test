@@ -17,7 +17,7 @@ Executando o programa pela primeira vez:
     * Por exemplo, o ID do container criado(MySQL) é 9f9a3fd50255. Iniciar o container com o comando:
 	sudo docker container start 9f9a3fd50255
     * Copiar o script SQL para o container criado com o comando:
-	sudo docker cp ~/Downloads/Dump20200707.sql 9f9a3fd50255:/file.sql
+	sudo docker cp ./mysql-dump/Dump20200707.sql 9f9a3fd50255:/file.sql
 	Onde:
  	  ~/Downloads/Dump20200707.sql é o local/nome do script SQL;
 	  file.sql é nome do arquivo dentro do container;
