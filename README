@@ -1,58 +1,59 @@
 Executando o programa pela primeira vez:
 
 * Use o Maven para compilar o projeto do Spring Boot:
-		* Entre na pasta teste
+    * Entre na pasta teste
     * Digite o comando para limpar/instalar(está incluído a compilação) o jar:
-				mvn clean install
+	mvn clean install
 
 * Utilizando o docker composer, criaremos os containers do MySQL e da aplicação Spring Boot:
-		* Volte para a pasta raíz do projeto
-	  * Para criar os 2 containers (Mysql e aplicação Spring Boot), digite:
-			sudo docker-compose up --build
-		* Dará um erro ao iniciar a aplicação Spring Boot devido a inexistência das tabelas do banco de dados
+    * Volte para a pasta raíz do projeto
+    * Para criar os 2 containers (Mysql e aplicação Spring Boot), digite:
+	sudo docker-compose up --build
+    * Dará um erro ao iniciar a aplicação Spring Boot devido a inexistência das tabelas do banco de dados
 
 * Importar script SQL para o banco de dados criado na etapa anterior:
-		* Verificar qual é o ID do container do banco de dados com o comando:
-				sudo docker ps -a
-		* Por exemplo, o ID do container criado é 9f9a3fd50255. Iniciar o container com o comando:
-				sudo docker container start 9f9a3fd50255
-		* Copiar o script SQL para o container criado com o comando:
-				sudo docker cp ~/Downloads/Dump20200707.sql 9f9a3fd50255:/file.sql
-				Onde:
-					~/Downloads/Dump20200707.sql é o local/nome do script SQL;
-					file.sql é nome do arquivo dentro do container;
-		* Executar o comando de importação do script SQL:
-				mysql -uroot -p1234567 db_example < file.sql 2>/dev/null
-				Onde:
-					root é o nome do usuário do MySQL;
-					1234567 é a senha do usuário root do MySQL;
-					db_example é o nome do database criado (deve ser o MESMO configurado em application.properties no Spring Boot);
-					file.sql é o nome do script SQL copiado;
-		* Saia do bash com o comando:
-				crtl + d
-		* Pare a execução do container do MySQL com o comando:
-				sudo docker container stop 9f9a3fd50255
+    * Verificar qual é o ID do container do banco de dados com o comando:
+	sudo docker ps -a
+    * Por exemplo, o ID do container criado(MySQL) é 9f9a3fd50255. Iniciar o container com o comando:
+	sudo docker container start 9f9a3fd50255
+    * Copiar o script SQL para o container criado com o comando:
+	sudo docker cp ~/Downloads/Dump20200707.sql 9f9a3fd50255:/file.sql
+	Onde:
+ 	  ~/Downloads/Dump20200707.sql é o local/nome do script SQL;
+	  file.sql é nome do arquivo dentro do container;
+    * Executar o comando de importação do script SQL:
+	mysql -uroot -p1234567 db_example < file.sql 2>/dev/null
+	Onde:
+  	  root é o nome do usuário do MySQL;
+	  1234567 é a senha do usuário root do MySQL;
+	  db_example é o nome do database criado (deve ser o MESMO configurado em application.properties no Spring Boot);
+	  file.sql é o nome do script SQL copiado;
+    * Saia do bash com o comando:
+  	  crtl + d
+    * Pare a execução do container do MySQL com o comando:
+	sudo docker container stop 9f9a3fd50255
+	
 * Inicie novamente o docker-compose para iniciar os containers com o comando:
-		sudo docker-compose up
+    sudo docker-compose up
 
 
 Executando o programa depois da primeira vez:
 
 * Para inicar as aplicações, digite o comando:
-		sudo docker-compose up
+    sudo docker-compose up
 * Para para as aplicações, digite o comando:
-		sudo docker-compose down
+    sudo docker-compose down
 
-Quando modificar algo no Spring Boot
+Quando modificar algo no Spring Boot:
 
 * Recompile o projeto do Spring Boot pelo Maven:
-		* Entre na pasta teste
+    * Entre na pasta teste
     * Digite o comando para limpar/instalar(está incluído a compilação) o jar:
-				mvn clean install
+	mvn clean install
 * Recompile o docker-composer com o comando:
-		* sudo docker-compose up --build
+    sudo docker-compose up --build
 
 Quando modificar algo no docker-compose.yml
 
 * Recompile o docker-composer com o comando:
-		* sudo docker-compose up --build
+    sudo docker-compose up --build
